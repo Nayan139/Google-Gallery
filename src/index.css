@@ -1,13 +1,16 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html *
+{
+   font-size: 1em !important;
+   color: rgb(73, 113, 215);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face{
+  font-family: 'PlayfairDisplay-Bold';
+  src: local('PlayfairDisplay-Bold'), url("./Assets/Fonts/PlayfairDisplay-Bold.ttf") format('truetype');
+  font-weight: bold;
+}
+
+@font-face{
+  font-family: 'PlayfairDisplay-Black';
+  src: local('PlayfairDisplay-Black'), url("./Assets/Fonts/PlayfairDisplay-Black.ttf") format('truetype');
 }

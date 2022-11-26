@@ -1,0 +1,14 @@
+import "./PlayfairDisplay-Black.ttf";
+import "./PlayfairDisplay-BlackItalic.ttf";
+import "./PlayfairDisplay-Bold.ttf";
+import "./PlayfairDisplay-BoldItalic.ttf";
+import "./PlayfairDisplay-ExtraBold.ttf";
+import "./PlayfairDisplay-ExtraBoldItalic.ttf";
+import "./PlayfairDisplay-Italic-VariableFont_wght.ttf";
+import "./PlayfairDisplay-Italic.ttf";
+import "./PlayfairDisplay-Medium.ttf";
+import "./PlayfairDisplay-MediumItalic.ttf";
+import "./PlayfairDisplay-Regular.ttf";
+import "./PlayfairDisplay-SemiBold.ttf";
+import "./PlayfairDisplay-SemiBoldItalic.ttf";
+import "./PlayfairDisplay-VariableFont_wght.ttf";
