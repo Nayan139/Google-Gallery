@@ -1,17 +1,18 @@
-import { Box, Container, CssBaseline } from "@mui/material";
-import "./App.css";
+import { Box, Container } from "@mui/material";
 import Home from "./Components/Home/Home";
+import Navbar from "./Components/Navbar/Navbar";
+import "./App.css";
 
 function App() {
   return (
-    <div>
-      <CssBaseline />
-      <Container maxWidth="lg">
-        <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }}>
-          <Home />
-        </Box>
-      </Container>
-    </div>
+    <Container
+      maxWidth="lg"
+      className="container"
+      sx={{ bgcolor: "#cfe8fc", height: "100vh" }}
+    >
+      <Navbar />
+      <Home />
+    </Container>
   );
 }
 

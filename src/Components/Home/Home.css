@@ -1,4 +1,26 @@
-.Box_main{
-    padding: 10px 0 0 0;
-    font-family: 'PlayfairDisplay-Bold';
+.Box_home{
+ height: 15rem;
+ width: auto;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
+
+.upload_icon{
+    align-self: center;
+    height: 5rem;
+    width: 2rem;
+    fill: rgb(9, 212, 243)
+}
+
+.upload_icon:hover{
+    fill: rgb(51, 179, 199);
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .Box_home{
+        padding-top: 10px;
+    }
+  }

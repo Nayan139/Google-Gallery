@@ -1,0 +1,28 @@
+.Box_main{
+    padding: 0.5rem 0 0 0;
+    font-family: 'PlayfairDisplay-Bold';
+    margin: 0px;
+    padding: 0px;
+}
+svg{
+    height: 5rem;
+    width: 2rem;
+    fill: rgb(51, 179, 199)
+}
+.Box_header{
+    padding-left: 2rem;
+    display: flex;
+    place-items: center;
+    gap: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    svg{
+        height: 2.5rem;
+        width: 1rem;
+    }
+    .Box_header{
+        padding-left: 1rem;
+        gap: 10px;
+    }
+  }
