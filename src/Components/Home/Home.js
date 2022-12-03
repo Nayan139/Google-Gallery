@@ -10,7 +10,7 @@ const Home = () => {
         <Typography
           sx={{
             fontFamily: "PlayfairDisplay-Bold",
-            fontSize: { xs: "1.8rem", sm: "2.8rem" },
+            fontSize: { xs: "1.8rem", md: "2.8rem", sm: "2rem" },
             textAlign: "center",
             color: "rgb(51, 179, 199)",
           }}
@@ -20,7 +20,7 @@ const Home = () => {
         <Typography
           sx={{
             fontFamily: "PlayfairDisplay-Bold",
-            fontSize: { xs: "0.8rem", sm: "1.5rem" },
+            fontSize: { xs: "0.8rem", md: "1.5rem", sm: "1.2rem" },
             color: "rgb(51, 179, 199)",
           }}
         >
