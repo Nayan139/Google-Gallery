@@ -19,8 +19,14 @@
 }
 
 
+img{
+    height: 50px;
+    width: 50px;
+    place-self: "center"
+}
+
 @media only screen and (max-width: 600px) {
     .Box_home{
         padding-top: 10px;
     }
-  }
+  } 
