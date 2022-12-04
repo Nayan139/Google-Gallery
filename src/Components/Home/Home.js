@@ -10,21 +10,17 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   const Files = ["image/jpg", "image/jpeg", "image/png"];
-  const listRef = ref(storage, "/images");
 
   useEffect(() => {
-    getImageList();
-  }, []);
-
-  const getImageList = () => {
+    const listRef = ref(storage, "/images");
     listAll(listRef).then((res) => {
       res.items.forEach((item) =>
         getDownloadURL(item).then((url) => {
-          setData([...data, { downloadURL: url }]);
+          setData([{ downloadURL: url }]);
         })
       );
     });
-  };
+  }, [error]);
 
   const handleFileUpload = async (e) => {
     try {
