@@ -1,7 +1,7 @@
 .Box_home{
- height: 15rem;
+ height: 7rem;
  width: auto;
- display: flex;
+ display: contents;
  justify-content: center;
  align-items: center;
 }
@@ -20,8 +20,8 @@
 
 
 img{
-    height: 50px;
-    width: 50px;
+    height: auto;
+    width: auto;
     place-self: "center"
 }
 

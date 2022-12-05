@@ -3,6 +3,8 @@
     font-family: 'PlayfairDisplay-Bold';
     margin: 0px;
     padding: 0px;
+    display: flex;
+    flex-direction: column;
 }
 svg{
     height: 5rem;
@@ -10,7 +12,8 @@ svg{
     fill: rgb(51, 179, 199)
 }
 .Box_header{
-    padding-left: 2rem;
+    height: 7rem;
+    padding:0 0 4rem 2rem;
     display: flex;
     place-items: center;
     gap: 20px;
@@ -21,8 +24,13 @@ svg{
         height: 2.5rem;
         width: 1rem;
     }
+    .Box_main{
+        padding: 0;
+     
+    }
     .Box_header{
-        padding-left: 1rem;
+        height: 6rem;
+        padding:0 0 1rem 1rem;
         gap: 10px;
     }
   }

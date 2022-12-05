@@ -1,8 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { BsFillPatchPlusFill } from "react-icons/bs";
 import { storage } from "../../auth/config";
-import { listAll, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  listAll,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  getMetadata,
+} from "firebase/storage";
 import "./Home.css";
 
 const Home = () => {
@@ -12,15 +27,27 @@ const Home = () => {
   const Files = ["image/jpg", "image/jpeg", "image/png"];
 
   useEffect(() => {
-    const listRef = ref(storage, "/images");
-    listAll(listRef).then((res) => {
-      res.items.forEach((item) =>
-        getDownloadURL(item).then((url) => {
-          setData([{ downloadURL: url }]);
+    getImageList();
+  }, [error]);
+
+  const getImageList = async () => {
+    try {
+      const listRef = ref(storage, "/images");
+      const imageList = await listAll(listRef);
+      const urls = await Promise.all(
+        imageList.items.map(async (ref) => {
+          const data = {
+            url: await getDownloadURL(ref),
+            metaData: await getMetadata(ref),
+          };
+          return data;
         })
       );
-    });
-  }, [error]);
+      await setData(urls);
+    } catch (error) {
+      console.log("error is:-", error);
+    }
+  };
 
   const handleFileUpload = async (e) => {
     try {
@@ -52,6 +79,7 @@ const Home = () => {
     }, 2000);
   };
 
+  console.log("data is here", data);
   return (
     <Box className="Box_home">
       <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -70,6 +98,7 @@ const Home = () => {
             fontFamily: "PlayfairDisplay",
             fontSize: { xs: "0.8rem", md: "1.5rem", sm: "1.2rem" },
             color: "rgb(51, 179, 199)",
+            placeSelf: "center",
           }}
         >
           Upload your memories on Google Gallery
@@ -94,11 +123,40 @@ const Home = () => {
         >
           {error.flag ? error.msg : error.msg}
         </Typography>
-        {data.length > 0
-          ? data.map((items) => (
-              <img src={`${items.downloadURL}.png`} alt="name" />
-            ))
-          : ""}
+
+        <Grid
+          container
+          spacing={{ xs: 2, md: 6 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {data.length > 0
+            ? data.map((items, index) => (
+                <Grid item xs={2} sm={4} md={4} key={index}>
+                  <Card sx={{ maxWidth: 245, textAlign: "center" }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        image={`${items.url}.png`}
+                        alt={`${items.metaData.name}`}
+                        sx={{ height: "20%", width: "20%" }}
+                      />
+                      <CardContent>
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          sx={{ fontSize: "10px" }}
+                        >
+                          {`${items.metaData.name}`}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              ))
+            : ""}
+        </Grid>
       </Box>
     </Box>
   );
