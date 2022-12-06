@@ -18,6 +18,10 @@
     cursor: pointer;
 }
 
+path:hover{
+    fill: rgb(51, 179, 199);
+    cursor: pointer;
+}
 
 img{
     height: auto;

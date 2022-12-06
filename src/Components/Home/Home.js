@@ -4,9 +4,9 @@ import {
   Box,
   Card,
   CardActionArea,
-  CardContent,
   CardMedia,
   Grid,
+  Pagination,
   Typography,
 } from "@mui/material";
 import { BsFillPatchPlusFill } from "react-icons/bs";
@@ -19,11 +19,15 @@ import {
   getMetadata,
 } from "firebase/storage";
 import "./Home.css";
+import usePagination from "../../helpers/pagination";
 
 const Home = () => {
   const [error, setError] = useState({ flag: false, msg: "" });
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
 
+  const PER_PAGE = 9;
+  const count = Math.ceil(data.length / PER_PAGE);
   const Files = ["image/jpg", "image/jpeg", "image/png"];
 
   useEffect(() => {
@@ -79,7 +83,12 @@ const Home = () => {
     }, 2000);
   };
 
-  console.log("data is here", data);
+  const _DATA = usePagination(data, PER_PAGE);
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+
   return (
     <Box className="Box_home">
       <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -124,39 +133,49 @@ const Home = () => {
           {error.flag ? error.msg : error.msg}
         </Typography>
 
-        <Grid
-          container
-          spacing={{ xs: 2, md: 6 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
+        <Grid container spacing={{ xs: 8 }} columns={{ xs: 1, sm: 8, md: 12 }}>
           {data.length > 0
-            ? data.map((items, index) => (
+            ? _DATA.currentData().map((items, index) => (
                 <Grid item xs={2} sm={4} md={4} key={index}>
-                  <Card sx={{ maxWidth: 245, textAlign: "center" }}>
+                  <Card
+                    sx={{
+                      textAlign: "center",
+                      height: {
+                        xs: "250px",
+                        sm: "300px",
+                        lg: "200px",
+                      },
+                      width: {
+                        xs: "250px",
+                        sm: "300px",
+                        lg: "350px",
+                      },
+                    }}
+                  >
                     <CardActionArea>
                       <CardMedia
                         component="img"
-                        height="140"
                         image={`${items.url}.png`}
                         alt={`${items.metaData.name}`}
-                        sx={{ height: "20%", width: "20%" }}
                       />
-                      <CardContent>
-                        <Typography
-                          gutterBottom
-                          variant="h5"
-                          component="div"
-                          sx={{ fontSize: "10px" }}
-                        >
-                          {`${items.metaData.name}`}
-                        </Typography>
-                      </CardContent>
                     </CardActionArea>
                   </Card>
                 </Grid>
               ))
             : ""}
         </Grid>
+        <Box
+          sx={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}
+        >
+          <Pagination
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </Box>
       </Box>
     </Box>
   );

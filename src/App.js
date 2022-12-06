@@ -8,7 +8,7 @@ function App() {
     <Container
       maxWidth="lg"
       className="container"
-      sx={{ bgcolor: "#cfe8fc", height: "100vh" }}
+      sx={{ bgcolor: "#cfe8fc", height: "auto" }}
     >
       <Navbar />
       <Home />
