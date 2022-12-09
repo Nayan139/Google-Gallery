@@ -130,7 +130,7 @@ const Home = () => {
             placeSelf: "center",
           }}
         >
-          {error.flag ? error.msg : error.msg}
+          <p className="box_message">{error.flag ? error.msg : error.msg}</p>
         </Typography>
 
         <Grid container spacing={{ xs: 8 }} columns={{ xs: 1, sm: 8, md: 12 }}>
@@ -143,12 +143,10 @@ const Home = () => {
                       height: {
                         xs: "250px",
                         sm: "300px",
-                        lg: "200px",
                       },
                       width: {
                         xs: "250px",
                         sm: "300px",
-                        lg: "350px",
                       },
                     }}
                   >
@@ -164,18 +162,24 @@ const Home = () => {
               ))
             : ""}
         </Grid>
-        <Box
-          sx={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}
-        >
-          <Pagination
-            count={count}
-            size="large"
-            page={page}
-            variant="outlined"
-            shape="rounded"
-            onChange={handleChange}
-          />
-        </Box>
+        {data.length > 0 ? (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "4rem",
+            }}
+          >
+            <Pagination
+              count={count}
+              size="large"
+              page={page}
+              variant="outlined"
+              shape="rounded"
+              onChange={handleChange}
+            />
+          </Box>
+        ) : null}
       </Box>
     </Box>
   );
